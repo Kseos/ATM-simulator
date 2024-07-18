@@ -1,4 +1,4 @@
-﻿// С++ program - Bankomat by Ksusha Pistsova
+﻿// С++ program - ATM by Ksusha Pistsova
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -6,12 +6,12 @@ using namespace std;
 class Bank {
 private:
     double balance = 0;
-    int PIN;
+    int PIN = 0000;
     int banknotes[5] = { 5, 10, 20, 50, 100 };
     int MAX = 2000;
 
 public:
-    void setdata() {
+    void set_data() {
         while (1) {
             cout << "Enter balance:" << endl;
             cin >> balance;
@@ -22,16 +22,16 @@ public:
         cin >> PIN;
         cout << endl << endl;
     }
-    int isPINcorrect(int pin) {
+    int is_PIN_correct(int pin) {
         if (pin == PIN) {
             return true;
         }
         else return false;
     }
-    void showbalance() {
+    void show_balance() {
         cout << "Total balance: " << balance << endl << endl;
     }
-    void withdrawmoney() {
+    void withdraw_money() {
         cout << "Possible banknotes: " << endl;
         for (int i = 0; i < size(banknotes); i++)
             cout << banknotes[i] << "\t"; cout << endl;
@@ -60,20 +60,19 @@ public:
         for (auto iter = banknoteslist.begin(); iter != banknoteslist.end(); ++iter) {
             cout << *iter << "\t";
         }
-        cout << endl;
-        //звук денег      
+        cout << endl;   
     }
 };
 
 int main() {
     Bank b; 
-    b.setdata();
+    b.set_data();
 
     int pin;
     for (;;) {
         cout << "PIN: " << endl;
         cin >> pin;
-        if (b.isPINcorrect(pin)) break;
+        if (b.is_PIN_correct(pin)) break;
         cout << "Error!" << endl;
     }
     
@@ -88,10 +87,10 @@ int main() {
 
         switch (choice) {
         case 1:
-            b.showbalance();
+            b.show_balance();
             break;
         case 2:
-            b.withdrawmoney();
+            b.withdraw_money();
             break;
         case 3:
             exit(1);
